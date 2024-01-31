@@ -1,0 +1,27 @@
+name: Run pipeline
+
+on:
+  push:
+    - '**.go'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.x'
+    - name: Install linters
+      run: |
+        go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
+        go install github.com/uudashr/gocognit/cmd/gocognit@latest
+    - name: Run tests
+      run: |
+        go test -v $(go list ./...)
+    - name: Check complexity
+      run: |
+        gocyclo -over 10 ./
+        gocognit -over 10 ./

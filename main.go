@@ -5,12 +5,18 @@ import (
 	"os"
 )
 
-func main() {
-	githubActor := os.Getenv("GITHUB_ACTOR")
+func getEnvString(key, defaultValue string) string {
+	value := os.Getenv(key)
 
-	if githubActor == "" {
-		githubActor = "unknown"
+	if value == "" {
+		return defaultValue
 	}
+
+	return value
+}
+
+func main() {
+	githubActor := getEnvString("GITHUB_ACTOR", "santiagozuluaga")
 
 	fmt.Printf("Hello %s!", githubActor)
 }
