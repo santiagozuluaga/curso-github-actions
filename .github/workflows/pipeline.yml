@@ -2,7 +2,8 @@ name: Run pipeline
 
 on:
   push:
-    - '**.go'
+    paths:
+      - '**.go'
 
 jobs:
   test:
