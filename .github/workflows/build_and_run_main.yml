@@ -1,9 +1,9 @@
-name: Run main file
+name: Build and run main file
 
 on: [push, pull_request]
 
 jobs:
-  test:
+  build_and_run_main:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
