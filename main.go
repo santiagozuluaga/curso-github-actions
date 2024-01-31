@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("Hello world!")
+	githubActor := os.Getenv("GITHUB_ACTOR")
+
+	if githubActor == "" {
+		githubActor = "unknown"
+	}
+
+	fmt.Printf("Hello %s!", githubActor)
 }
