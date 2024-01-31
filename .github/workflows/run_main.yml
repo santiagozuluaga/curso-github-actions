@@ -1,0 +1,18 @@
+name: Run main file
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21.x'
+    - name: Build main file
+      run: go build main.go
+    - name: Run binary
+      run: ./main
