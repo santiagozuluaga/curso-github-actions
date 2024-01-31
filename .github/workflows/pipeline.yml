@@ -1,9 +1,6 @@
 name: Run pipeline
 
-on:
-  push:
-    paths:
-      - '**.go'
+on: [push, pull_request]
 
 jobs:
   test:
